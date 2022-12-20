@@ -37,6 +37,20 @@ var categoriesSetup = function () {
 	}
 };
 
+var userInfo = function () {
+	let user = new User();
+	$("form.login").submit(function (e) {
+		e.preventDefault();
+		var username = $("#username").val();
+		var password = $("#password").val();
+		user.doLogin(username, password);
+	});
+	if ($(".userAccount").length) {
+		var userAccount = JSON.parse(localStorage.user);
+		user.getAccountInfo(userAccount);
+	}
+};
+
 var productsSetup = function () {
 	let products = new Products();
 	if ($(".products.new").length) {
@@ -47,6 +61,17 @@ var productsSetup = function () {
 	}
 };
 
+var cartInfo = function () {
+	let cart = new Cart();
+	if (localStorage.getItem("user") != null) {
+		var user = JSON.parse(localStorage.user);
+		cart.getCart(user.id);
+		if (localStorage.getItem("cartCount") != 0) {
+			var cartItems = JSON.parse(localStorage.getItem("cart"));
+			cart.getCartDisplay(cartItems);
+		}
+	}
+};
 
 function loadScript(url, callback) {
 	var head = document.head;
