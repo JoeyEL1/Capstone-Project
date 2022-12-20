@@ -66,3 +66,5 @@ class Cart {
 		$(".price").html(price);
 	}
 }
+
+

@@ -99,3 +99,5 @@ function urlParam(name) {
 		return results[1] || 0;
 	}
 }
+
+
